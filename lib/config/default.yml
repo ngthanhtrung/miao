@@ -1,0 +1,107 @@
+# Default configurations
+host: "0.0.0.0"
+port: 2601
+
+log:
+  consoleLevel: "debug"
+  fileLevel: "access"
+  filePrefix: "miao"
+
+cluster:
+  workers: "max"
+
+  # Use worker-process rotation?
+  rotateWorkers: true
+  # How long between full rotations
+  rotationInterval: 7200
+  # How long to wait for in-flight requests before rotating
+  rotationTimeout: 300
+
+  # How long to wait for in-flight requests before killing
+  gracefulShutdownTimeout: 30
+
+  # How long between heartbeat calls from the worker to the master
+  heartbeatInterval: 5
+  # How old a heartbeat-timestamp can be before assuming a worker is hung
+  # and needs to be killed
+  heartbeatTimeout: 20
+
+mongo:
+  host: "127.0.0.1"
+  port: 27017
+  db: "miao"
+  options:
+    server:
+      poolSize: 10
+
+redis:
+  host: "127.0.0.1"
+  port: 6379
+  db: 0
+  prefix: "miao:"
+
+elasticSearch:
+  host: "127.0.0.1"
+  port: 9200
+  index: "miao"
+
+cookie:
+  secret: "g6oVuERmIa6N3sw2yGuhjYg3JiXrkd5OEqiDjoP1RXpz5InsfW6e5g2PSsaoyucF"
+  maxAge: 2592000000 # one month in millisecond
+
+session:
+  key: "miao.sid"
+  secret: "gyyRjBEbjSyttGsuEZaMejLcxPS27Z4aD62KatqlsF2HuB8yXsqb1pnBAR3AotZi"
+  maxAge: 2592000000 # one month in millisecond
+  redisPrefix: "sid:"
+
+facebook:
+    appId: "Too bad we cannot have a random application ID!"
+    appSecret: "And we cannot have a random application secret too."
+
+# Development environment
+development:
+  log:
+    filePrefix: "miao-dev"
+
+  cluster:
+    workers: 1
+
+  mongo:
+    db: "miao_dev"
+
+  redis:
+    prefix: "miao.dev:"
+
+  elasticSearch:
+    index: "miao-dev"
+
+  session:
+    key: "miao_dev.sid"
+
+# Test environment
+test:
+  log:
+    filePrefix: "miao-test"
+
+  mongo:
+    db: "miao_test"
+
+  redis:
+    prefix: "miao.test:"
+
+  elasticSearch:
+    index: "miao-test"
+
+  session:
+    key: "miao_test.sid"
+
+# Production environment
+production:
+  log:
+    consoleLevel: "info"
+
+  mongo:
+    options:
+      server:
+        poolSize: 200
