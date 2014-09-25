@@ -40,7 +40,7 @@ redis:
   db: 0
   prefix: "miao:"
 
-elasticSearch:
+elastic:
   host: "127.0.0.1"
   port: 9200
   index: "miao"
@@ -73,7 +73,7 @@ development:
   redis:
     prefix: "miao.dev:"
 
-  elasticSearch:
+  elastic:
     index: "miao-dev"
 
   session:
@@ -90,7 +90,7 @@ test:
   redis:
     prefix: "miao.test:"
 
-  elasticSearch:
+  elastic:
     index: "miao-test"
 
   session:
